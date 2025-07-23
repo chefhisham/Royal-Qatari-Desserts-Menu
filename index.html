@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Qatari Desserts</title>
+    <title>Royal Qatari Desserts Menu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:wght@400;600;700&display=swap');
@@ -29,7 +29,7 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: -2;
-            opacity: 0.45;
+            opacity: 0.55;
             filter: sepia(50%) brightness(110%);
 			
         }
@@ -711,8 +711,8 @@
             </div>
         </div>
         <div class="door-message door-pulse">
-           اضغط للدخول
-            <span class="door-message-small">حلويات  الشيف هشام في انتظارك</span>
+           
+            <span class="door-message-small">مرحبا بكم في حلويات الشيف هشام</span>
         </div>
     </div>
 
@@ -771,7 +771,7 @@
     <!-- Modal for Image Zoom -->
     <div class="modal" id="imageModal">
         <div class="modal-content">
-            <span class="close-modal" id="closeModal">×</span>
+            <span class="close-modal" id="closeModal">X</span>
             <img src="" id="modalImage" class="modal-image">
            
         </div>
@@ -784,6 +784,7 @@
 		 { image: "arabic1.jpeg" },
                 { image: "arabic2.jpeg" },
                 { image: "arabic3.jpeg" },
+           
                 { image: "arabic5.jpeg" },
                 { image: "arabic6.jpeg" },
                 { image: "arabic7.jpeg" },
@@ -813,19 +814,18 @@
             ]
         };
 
-        // Door animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const castleDoor = document.getElementById('castleDoor');
-            
-            castleDoor.addEventListener('click', function() {
-                castleDoor.classList.add('door-open');
-                document.querySelector('.door-message').style.display = 'none';
-                
-                setTimeout(function() {
-                    castleDoor.style.display = 'none';
-                }, 2500);
-            });
-        });
+       // Auto-open door on page load
+window.addEventListener('load', function() {
+    const castleDoor = document.getElementById('castleDoor');
+    
+    // Start opening animation
+    castleDoor.classList.add('door-open');
+    
+    // Remove door after animation completes (1.5s + buffer)
+    setTimeout(function() {
+        castleDoor.style.display = 'none';
+    }, 1500);
+});
         
         // Category click event
         const categoryCards = document.querySelectorAll('.category-card');
