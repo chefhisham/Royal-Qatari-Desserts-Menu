@@ -1,898 +1,418 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Royal Qatari Desserts Menu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:wght@400;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
         body {
-            font-family: 'Cormorant Garamond', serif;
-            background-color: rgba(245, 241, 232, 0.8);
-            background-image: linear-gradient(135deg, rgba(245, 241, 232, 0.9) 0%, rgba(237, 230, 214, 0.9) 100%);
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f5f0e8;
             overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-            color: #8a7047;
         }
-        
-        .royal-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("Qasr.jpeg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -2;
-            opacity: 0.55;
-            filter: sepia(50%) brightness(110%);
-			
-        }
-        
-        .castle-door {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 100;
-            display: flex;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d2b48c' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            cursor: pointer;
-        }
-        
+
+        /* Doors */
         .door-left, .door-right {
-            width: 50%;
-            height: 100%;
-            background-color: #e8dcc8;
-            background-image: linear-gradient(135deg, #e8dcc8 0%, #d9cdb3 100%);
-            position: relative;
-            transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        .door-left {
-            border-right: 12px solid #c9b38c;
-            transform-origin: left;
-        }
-        
-        .door-right {
-            border-left: 12px solid #c9b38c;
-            transform-origin: right;
-        }
-        
-        .door-open .door-left {
-            transform: perspective(1500px) rotateY(-105deg);
-        }
-        
-        .door-open .door-right {
-            transform: perspective(1500px) rotateY(105deg);
-        }
-        
-        .door-handle {
-            width: 40px;
-            height: 80px;
-            background-color: #c9b38c;
-            background-image: linear-gradient(to bottom, #d2b48c 0%, #c9b38c 50%, #b8a27c 100%);
-            border-radius: 20px;
-            position: absolute;
-            top: 50%;
-            box-shadow: 0 0 20px rgba(201, 179, 140, 0.6);
-        }
-        
-        .door-left .door-handle {
-            right: 50px;
-        }
-        
-        .door-right .door-handle {
-            left: 50px;
-        }
-        
-        .door-design {
-            width: 80%;
-            height: 80%;
-            border: 12px solid #c9b38c;
-            border-image: linear-gradient(45deg, #d2b48c, #c9b38c, #b8a27c) 1;
-            margin: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        
-        .door-design::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: -12px;
-            right: -12px;
-            bottom: -12px;
-            border: 2px solid #d2b48c;
-            opacity: 0.3;
-            pointer-events: none;
-        }
-        
-        .door-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d2b48c' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        
-        .door-ornament {
-            position: absolute;
-            width: 70%;
-            height: 70%;
-            border: 8px solid #c9b38c;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .door-ornament::before {
-            content: '';
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            border: 4px solid #d2b48c;
-            opacity: 0.6;
-        }
-        
-        .door-ornament::after {
-            content: '';
-            position: absolute;
-            width: 40%;
-            height: 40%;
-            border: 6px solid #c9b38c;
-            background-color: rgba(201, 179, 140, 0.1);
-        }
-        
-        .menu-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            position: relative;
-        }
-        
-        .royal-bg {
             position: fixed;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d2b48c' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            z-index: -1;
-            opacity: 0.3;
-        }
-        
-        .royal-border {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            border: 2px solid #c9b38c;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .royal-corner {
-            position: fixed;
-            width: 50px;
-            height: 50px;
-            z-index: -1;
-        }
-        
-        .royal-corner-tl {
-            top: 10px;
-            left: 10px;
-            border-top: 4px solid #c9b38c;
-            border-left: 4px solid #c9b38c;
-        }
-        
-        .royal-corner-tr {
-            top: 10px;
-            right: 10px;
-            border-top: 4px solid #c9b38c;
-            border-right: 4px solid #c9b38c;
-        }
-        
-        .royal-corner-bl {
-            bottom: 10px;
-            left: 10px;
-            border-bottom: 4px solid #c9b38c;
-            border-left: 4px solid #c9b38c;
-        }
-        
-        .royal-corner-br {
-            bottom: 10px;
-            right: 10px;
-            border-bottom: 4px solid #c9b38c;
-            border-right: 4px solid #c9b38c;
-        }
-        
-        h1 {
-            font-family: 'Cinzel', serif;
-            color: #8a7047;
-            text-align: center;
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            font-weight: 900;
-            text-shadow: 0 2px 10px rgba(138, 112, 71, 0.3);
-            position: relative;
-            padding-bottom: 1.5rem;
-        }
-        
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
-            background-image: linear-gradient(to right, transparent, #c9b38c, transparent);
-        }
-        
-        .royal-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-        
-        .royal-divider::before,
-        .royal-divider::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background-image: linear-gradient(to right, transparent, #c9b38c, transparent);
-        }
-        
-        .royal-divider-icon {
-            margin: 0 20px;
-            color: #c9b38c;
-            font-size: 1.5rem;
-        }
-        
-        .category-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-        
-        .category-card {
-            background-color: #f0e9d9;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 20px rgba(201, 179, 140, 0.2);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            height: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            border: 1px solid rgba(201, 179, 140, 0.3);
-        }
-        
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 1px solid rgba(201, 179, 140, 0.2);
-            pointer-events: none;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 30px rgba(201, 179, 140, 0.3);
-            border-color: rgba(201, 179, 140, 0.6);
-        }
-        
-        .category-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #8a7047;
-            position: relative;
-            padding-bottom: 1.5rem;
-        }
-        
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #c9b38c;
-        }
-        
-        .gallery-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(245, 241, 232, 0.98);
+            height: 100vh;
+            width: 50vw;
+            background-color: #6b1d1d;
             z-index: 50;
-            padding: 3rem;
-            overflow-y: auto;
-        }
-        
-        .gallery-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .gallery-header::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, transparent, #c9b38c, transparent);
-        }
-        
-        .back-button {
-            background-color: transparent;
-            color: #8a7047;
-            border: 2px solid #c9b38c;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .back-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background-color: #c9b38c;
-            transition: all 0.3s ease;
-            z-index: -1;
-        }
-        
-        .back-button:hover {
-            color: #5c4f35;
-        }
-        
-        .back-button:hover::before {
-            width: 100%;
-        }
-        
-        .gallery-title {
-            font-family: 'Cinzel', serif;
-            color: #8a7047;
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 0;
-            text-shadow: 0 2px 10px rgba(138, 112, 71, 0.3);
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-        
-        .dessert-item {
-            background-color: #f0e9d9;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 20px rgba(201, 179, 140, 0.2);
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(201, 179, 140, 0.3);
-            position: relative;
-            height: 200px;
+            transition: transform 2s ease-in-out;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        .door-left { left: 0; }
+        .door-right { right: 0; }
+        .door-handle {
+            width: 20px;
+            height: 60px;
+            background-color: #d4b996;
+            border-radius: 10px;
+            position: absolute;
+        }
+        .door-left .door-handle { right: 30px; }
+        .door-right .door-handle { left: 30px; }
+        .door-open-left { transform: translateX(-100%); }
+        .door-open-right { transform: translateX(100%); }
+
+        /* Category Cards */
+        .category-card {
+            background-color: rgba(255,255,255,0.85);
+            border: 2px solid #d4b996;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(3px);
+            border-radius: 1rem;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(107,29,29,0.3);
+        }
+
+        /* Category Title */
+        .category-title {
+            color: #6b1d1d;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 10px;
+        }
+
+        /* Buttons */
+        .royal-button {
+            background-color: #6b1d1d;
+            color: #d4b996;
+            border: 1px solid #d4b996;
+            transition: all 0.3s ease;
+        }
+        .royal-button:hover {
+            background-color: #d4b996;
+            color: #6b1d1d;
+        }
+
+        /* Product Cards */
+        .item-card {
+            background-color: rgba(255,255,255,0.9);
+            border: 2px solid #d4b996;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(107,29,29,0.3);
+        }
+        .item-image {
+            height: 220px;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-        
-        .dessert-item::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 1px solid rgba(201, 179, 140, 0.2);
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .dessert-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 30px rgba(201, 179, 140, 0.3);
-            border-color: rgba(201, 179, 140, 0.6);
-        }
-        
-        .dessert-item:hover::before {
-            opacity: 1;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
-        }
-        
+
+        /* Modal */
         .modal {
+            background-color: rgba(0, 0, 0, 0.8);
             display: none;
             position: fixed;
-            top: 0;
+            z-index: 100;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 200;
-            justify-content: center;
-            align-items: center;
+            overflow: auto;
         }
-        
-        .modal-content {
+        #zoom-img-container {
             position: relative;
-            max-width: 90%;
-            max-height: 90%;
+            overflow: hidden;
+            width: 100%;
+            height: 320px;
+            margin-bottom: 20px;
         }
-        
-        .modal-image {
-            max-width: 100%;
-            max-height: 80vh;
+        #zoom-img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            border: 10px solid #f0e9d9;
-            box-shadow: 0 0 0 2px #c9b38c, 0 10px 40px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
-        
-        .close-modal {
-            position: absolute;
-            top: -25px;
-            right: -25px;
-            width: 50px;
-            height: 50px;
-            background-color: #f0e9d9;
-            color: #8a7047;
-            border-radius: 50%;
+
+        /* Header/Footer */
+        .royal-header {
+            background-color: #6b1d1d;
+            border-bottom: 3px solid #d4b996;
+        }
+        .royal-footer {
+            background-color: #6b1d1d;
+            border-top: 3px solid #d4b996;
+        }
+
+        /* Layout */
+        .main-content {
+            background-image: url('Qasr.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #f5f0e8;
+            background-blend-mode: normal;
+        }
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .button-group {
             display: flex;
             justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            border: 2px solid #c9b38c;
-            box-shadow: 0 0 20px rgba(201, 179, 140, 0.4);
-            transition: all 0.3s ease;
-        }
-        
-        .close-modal:hover {
-            background-color: #c9b38c;
-            color: #5c4f35;
-            transform: rotate(90deg);
-        }
-        
-        .zoom-controls {
-            position: absolute;
-            bottom: -70px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .zoom-button {
-            width: 60px;
-            height: 60px;
-            background-color: #f0e9d9;
-            color: #8a7047;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            border: 2px solid #c9b38c;
-            box-shadow: 0 0 20px rgba(201, 179, 140, 0.4);
-            transition: all 0.3s ease;
-        }
-        
-        .zoom-button:hover {
-            background-color: #c9b38c;
-            color: #5c4f35;
-            transform: scale(1.1);
-        }
-        
-        .shimmer {
-            background: linear-gradient(90deg, 
-                rgba(201, 179, 140, 0.1) 0%, 
-                rgba(210, 180, 140, 0.2) 25%, 
-                rgba(201, 179, 140, 0.1) 50%, 
-                rgba(210, 180, 140, 0.2) 75%, 
-                rgba(201, 179, 140, 0.1) 100%);
-            background-size: 200% 100%;
-            animation: shimmer 3s infinite linear;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        
-        .door-decoration {
-            position: absolute;
-            width: 70%;
-            height: 70%;
-            border: 8px solid #c9b38c;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .door-decoration::before {
-            content: '';
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            border: 4px solid #d2b48c;
-            opacity: 0.6;
-        }
-        
-        .door-decoration::after {
-            content: '';
-            position: absolute;
-            width: 40%;
-            height: 40%;
-            border: 6px solid #c9b38c;
-            background-color: rgba(201, 179, 140, 0.1);
-        }
-        
-        .door-message {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            text-align: center;
-            transform: translateY(-50%);
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: #8a7047;
-            text-shadow: 0 2px 10px rgba(138, 112, 71, 0.3);
-            z-index: 10;
-            pointer-events: none;
-            opacity: 0.9;
-        }
-        
-        .door-message-small {
-            display: block;
-            font-size: 1.5rem;
-            margin-top: 1rem;
-            font-family: 'Cormorant Garamond', serif;
-            opacity: 0.8;
-        }
-        
-        .door-pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @media (max-width: 768px) {
-            .category-container {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-                gap: 2rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 2rem;
-            }
-            
-            .category-card {
-                height: 150px;
-                padding: 1.5rem;
-            }
-            
-            .category-title {
-                font-size: 1.5rem;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .gallery-title {
-                font-size: 2rem;
-            }
-            
-            .door-decoration {
-                width: 60%;
-                height: 60%;
-            }
-            
-            .door-message {
-                font-size: 1.8rem;
-            }
-            
-            .door-message-small {
-                font-size: 1.2rem;
-            }
-        }
-        
-        /* Royal Animations */
-        @keyframes shimmer {
-            0% {
-                background-position: -100% 0;
-            }
-            100% {
-                background-position: 200% 0;
-            }
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            direction: ltr;
         }
     </style>
 </head>
 <body>
-    <!-- New Background Image -->
-    <div class="royal-background"></div>
-    
-    <!-- Royal Background Elements -->
-    <div class="royal-bg"></div>
-    <div class="royal-border"></div>
-    <div class="royal-corner royal-corner-tl"></div>
-    <div class="royal-corner royal-corner-tr"></div>
-    <div class="royal-corner royal-corner-bl"></div>
-    <div class="royal-corner royal-corner-br"></div>
-    
-    <!-- Castle Door Animation -->
-    <div class="castle-door" id="castleDoor">
-        <div class="door-left">
-            <div class="door-pattern"></div>
-            <div class="door-handle"></div>
-            <div class="door-design">
-                <div class="shimmer"></div>
-                <div class="door-decoration"></div>
-            </div>
-        </div>
-        <div class="door-right">
-            <div class="door-pattern"></div>
-            <div class="door-handle"></div>
-            <div class="door-design">
-                <div class="shimmer"></div>
-                <div class="door-decoration"></div>
-            </div>
-        </div>
-        <div class="door-message door-pulse">
-           مرحبا بكم في حلويات الشيف هشام
-            <span class="door-message-small"></span>
-        </div>
+    <!-- Castle Doors -->
+    <div class="door-left" id="doorLeft">
+        <div class="door-handle"></div>
+    </div>
+    <div class="door-right" id="doorRight">
+        <div class="door-handle"></div>
     </div>
 
-    <!-- Main Content -->
-    <div class="menu-container">
-        <h1><b>قصر الشيخة</b></h1>
-        <h1><b>Qasr Al Sheikha</b></h1>
-		<h1><b>حلويات الشيف هشام</b></h1>
-		
-        <div class="royal-divider">
-            <div class="royal-divider-icon">✦</div>
-        </div>
-        
-        <div class="category-container">
-            <div class="category-card" data-category="arabic">
-                <div class="shimmer"></div>
-                <h2 class="category-title">حلو عربي</h2>
+    <!-- Page Wrapper -->
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="royal-header py-4 px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#d4b996] tracking-wider"> <b>قصر الشيخة</b></h1>
+        <h1 class="text-4xl md:text-5xl font-bold text-[#d4b996] tracking-wider"><b>Qasr Al Sheikha</b></h1>
+            <p class="text-[#d4b996] italic mt-2">حلويات الشيف هشام</p>
+        </header>
+
+        <!-- Main Page -->
+        <main class="flex-grow main-content">
+            <div id="mainPage" class="container mx-auto px-4 py-12">
+                <h2 class="text-3xl md:text-4xl text-center font-semibold text-[#6b1d1d] mb-12"> </h2>
+				 <h2 class="text-3xl md:text-4xl text-center font-semibold text-[#6b1d1d] mb-12"> </h2>
+                <div class="category-container">
+                    <div class="category-card" onclick="showCategory('arabic')"><h2 class="category-title">حلو عربي<br>Arabic Desserts</h2></div>
+                    <div class="category-card" onclick="showCategory('Special')"><h2 class="category-title">كيك مميز<br>Special Cakes</h2></div>
+                    <div class="category-card" onclick="showCategory('tart')"><h2 class="category-title">جميع التارتات<br>Tarts Collection</h2></div>
+                    <div class="category-card" onclick="showCategory('birthday')"><h2 class="category-title">كيك أعياد ميلاد<br>Birthday Cakes</h2></div>
+                    <div class="category-card" onclick="showCategory('ramadan')"><h2 class="category-title">حلويات رمضان<br>Ramadan Sweets</h2></div>
+                    <div class="category-card" onclick="showCategory('bakery')"><h2 class="category-title">جميع المخبوزات<br>Bakery Items</h2></div>
+                </div>
             </div>
-            
-            <div class="category-card" data-category="Special">
-                <div class="shimmer"></div>
-                <h2 class="category-title">كيك مميز</h2>
+
+            <!-- Category Page -->
+            <div id="categoryPage" class="container mx-auto px-4 py-12 hidden">
+                <div class="flex items-center mb-8">
+                    <button onclick="showMainPage()" class="royal-button px-4 py-2 rounded-md flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        العودة للتصنيفات
+                    </button>
+                </div>
+                <h2 id="categoryTitle" class="text-3xl md:text-4xl text-center font-semibold text-[#6b1d1d] mb-8"></h2>
+                <div id="arabic" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden"></div>
+                <div id="Special" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden"></div>
+                <div id="tart" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden"></div>
+                <div id="birthday" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden"></div>
+                <div id="ramadan" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden"></div>
+                <div id="bakery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden"></div>
             </div>
-            
-            <div class="category-card" data-category="tart">
-                <div class="shimmer"></div>
-                <h2 class="category-title">جميع التارتات</h2>
-            </div>
-            
-            <div class="category-card" data-category="birthday">
-                <div class="shimmer"></div>
-                <h2 class="category-title">كيك أعياد ميلاد</h2>
-            </div>
-            
-            <div class="category-card" data-category="ramadan">
-                <div class="shimmer"></div>
-                <h2 class="category-title">حلويات رمضان</h2>
-            </div>
-			
-			<div class="category-card" data-category="bakery">
-                <div class="shimmer"></div>
-                <h2 class="category-title">جميع المخبوزات</h2>
-            </div>
-        </div>
+        </main>
     </div>
-    
-    <!-- Gallery Container -->
-    <div class="gallery-container" id="gallery">
-        <div class="gallery-header">
-            <button class="back-button" id="backButton">← العودة إلى القائمة</button>
-            <h2 class="gallery-title" id="galleryTitle">Arabic Desserts</h2>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="p-4 flex justify-end">
+            <button onclick="closeModal()" class="text-white text-2xl font-bold">&times;</button>
         </div>
-        <div class="gallery-grid" id="galleryGrid"></div>
-    </div>
-    
-    <!-- Modal for Image Zoom -->
-    <div class="modal" id="imageModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">X</span>
-            <img src="" id="modalImage" class="modal-image">
-           
+        <div class="zoom-container bg-[#f5f0e8] p-8 rounded-lg">
+            <h2 id="modalTitle" class="text-2xl font-bold text-[#6b1d1d] mb-6 text-center"></h2>
+            <div id="modalContent" class="border-4 border-[#d4b996] p-6 rounded-lg bg-white">
+                <div id="zoom-img-container"><img id="zoom-img" src="" alt="Dessert Image"></div>
+                <p id="modalDescription" class="text-[#8c5e58] text-lg mb-6 text-center"></p>
+            </div>
+            <div class="button-group mt-6">
+                <button onclick="zoomIn()" class="royal-button px-4 py-2 rounded-md mx-2">+</button>
+                <button onclick="zoomOut()" class="royal-button px-4 py-2 rounded-md mx-2">−</button>
+                <button onclick="resetZoom()" class="royal-button px-4 py-2 rounded-md mx-2">إعادة</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Simplified dessert data with one JPEG image per category
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('doorLeft').classList.add('door-open-left');
+                document.getElementById('doorRight').classList.add('door-open-right');
+            }, 1000);
+            initializeDesserts();
+        };
+
         const desserts = {
             arabic: [
-		 { image: "arabic1.jpeg" },
-                { image: "arabic2.jpeg" },
-                { image: "arabic3.jpeg" },
-           
-                { image: "arabic5.jpeg" },
-                { image: "arabic6.jpeg" },
-                { image: "arabic7.jpeg" },
-                { image: "arabic8.jpeg" },
-                { image: "arabic9.jpeg" },
-                { image: "arabic10.jpeg" },
-				{ image: "arabic11.jpeg" },
-				{ image: "arabic12.jpeg" },
-				{ image: "arabic13.jpeg" },
-				{ image: "arabic14.jpeg" },
+                { 
+                    image: "arabic1.jpeg",
+                    name: "بقلاوة بالفستق",
+                    description: "بقلاوة تقليدية محشوة بالفستق الحلبي المطحون مع طبقات رقيقة من العجين ومغمورة بالق syrup"
+                },
+                { 
+                    image: "arabic2.jpeg",
+                    name: "كنافة بالنوتيلا",
+                    description: "كنافة هشة محشوة بالنوتيلا الشهية مع قوام كريمي ومغطاة بالق syrup الذهبي"
+                },
+                { 
+                    image: "arabic3.jpeg",
+                    name: "مملوك بالقشطة",
+                    description: "حلوى المملوك التقليدية مع حشوة القشطة الطازجة ومغطاة بالفستق المقطع"
+                },
+                { 
+                    image: "arabic5.jpeg",
+                    name: "هريسة باللوز",
+                    description: "هريسة لبنانية ناعمة مع نكهة متميزة من ماء الورد ومغطاة بشرائح اللوز المحمص"
+                },
+                { 
+                    image: "arabic9.jpeg",
+                    name: "بسبوسة بالكوكو",
+                    description: "بسبوسة تقليدية مع نكهة الكوكو المميزة ومغمورة بالق syrup المعطر بماء الورد"
+                },
+                { 
+                    image: "arabic7.jpeg",
+                    name: "شعيبيات بالقشطة",
+                    description: "حلوى الشعيبيات المقرمشة محشوة بالقشطة الطازجة ومغطاة بالسكر البودرة"
+                },
+                { 
+                    image: "arabic8.jpeg",
+                    name: "غريبة بالفستق",
+                    description: "غريبة هشة مع قطع الفستق المحمص ونكهة الزبدة الفاخرة"
+                },
+                { 
+                    image: "arabic6.jpeg",
+                    name: "معمول بالتمر",
+                    description: "معمول تقليدي محشو بتمر العنبرة مع نكهة الهيل والقرفة"
+                },
+                { 
+                    image: "arabic10.jpeg",
+                    name: "حلوى الجبن",
+                    description: "حلوى الجبن اللبنانية مع قوام كريمي ونكهة ماء الورد والهيل"
+                },
+                { 
+                    image: "arabic11.jpeg",
+                    name: "بلح الشام",
+                    description: "بلح الشام المقرمش من الخارج والطري من الداخل مع syrup معطر"
+                },
+                { 
+                    image: "arabic12.jpeg",
+                    name: "كعك بالعجوة",
+                    description: "كعك تقليدي محشو بعجوة التمر مع نكهة السمسم المحمص"
+                },
+                { 
+                    image: "arabic13.jpeg",
+                    name: "زلابية بالقشطة",
+                    description: "زلابية مقلية هشة محشوة بالقشطة الطازجة ومغطاة بالعسل"
+                },
+                { 
+                    image: "arabic14.jpeg",
+                    name: "كنافة بالقشطة",
+                    description: "كنافة نابلسية تقليدية محشوة بالقشطة الطازجة ومغمورة بالق syrup"
+                }
             ],
-		
             Special: [
-                { image:"mangocheesecake.jpeg"}
+                { 
+                    image: "mangocheesecake.jpeg",
+                    name: "تشيز كيك المانجو",
+                    description: "تشيز كيك كريمي مع طبقة مانجو طازجة ونكهة الفانيلا"
+                }
             ],
             tart: [
-                { image: "tart1.jpeg" }
+                { 
+                    image: "tart1.jpeg",
+                    name: "تارت الشوكولاتة",
+                    description: "تارت بقاعدة بسكويت محشوة بشوكولاتة غنية ومغطاة بكريمة شانتيه"
+                }
             ],
             birthday: [
-                { image: "birthday1.jpeg" }
+                { 
+                    image: "birthday1.jpeg",
+                    name: "كيك عيد ميلاد",
+                    description: "كيك فانيليا مع طبقات من الكريمة والتزيين الشخصي حسب الطلب"
+                }
             ],
             ramadan: [
-                { image: "ramadan1.jpeg" }
-            ]   ,
-			bakery: [
-                { image: "bakery1.jpeg" }
+                { 
+                    image: "ramadan1.jpeg",
+                    name: "قطايف بالقشطة",
+                    description: "قطايف محشوة بالقشطة أو الجوز ومقلية حتى الذهبية"
+                }
+            ],
+            bakery: [
+                { 
+                    image: "bakery1.jpeg",
+                    name: "خبز التوست الفرنسي",
+                    description: "خبز توست فرنسي طازج مع قشرة مقرمشة وداخل طري"
+                }
             ]
         };
 
-       // Auto-open door on page load
-window.addEventListener('load', function() {
-    const castleDoor = document.getElementById('castleDoor');
-    
-    // Start opening animation
-    castleDoor.classList.add('door-open');
-    
-    // Remove door after animation completes (1.5s + buffer)
-    setTimeout(function() {
-        castleDoor.style.display = 'none';
-    }, 1500);
-});
-        
-        // Category click event
-        const categoryCards = document.querySelectorAll('.category-card');
-        categoryCards.forEach(card => {
-            card.addEventListener('click', function() {
-                const category = this.dataset.category;
-                const categoryTitle = this.querySelector('.category-title').textContent;
-                
-                document.getElementById('galleryTitle').textContent = categoryTitle;
-                const galleryGrid = document.getElementById('galleryGrid');
-                galleryGrid.innerHTML = '';
-                
-                desserts[category].forEach(dessert => {
-                    const dessertItem = document.createElement('div');
-                    dessertItem.className = 'dessert-item';
-                    dessertItem.style.backgroundImage = `url(${dessert.image})`;
-                    
-                    dessertItem.addEventListener('click', function() {
-                        openModalImage(dessert.image);
-                    });
-                    
-                    galleryGrid.appendChild(dessertItem);
+        function initializeDesserts() {
+            for (const category in desserts) {
+                const container = document.getElementById(category);
+                desserts[category].forEach(d => {
+                    const itemCard = document.createElement('div');
+                    itemCard.className = 'item-card';
+                    itemCard.innerHTML = `
+                        <div class="item-image" style="background-image:url('${d.image}')"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-[#6b1d1d]">${d.name}</h3>
+                            <p class="mt-2 text-[#8c5e58]">${d.description}</p>
+                            <button class="royal-button mt-4 px-4 py-2 rounded-md w-full" onclick="openModal('${d.name}','${d.description}','${d.image}')">عرض التفاصيل</button>
+                        </div>
+                    `;
+                    container.appendChild(itemCard);
                 });
-                
-                document.getElementById('gallery').style.display = 'block';
-            });
-        });
-        
-        // Back button event
-        document.getElementById('backButton').addEventListener('click', function() {
-            document.getElementById('gallery').style.display = 'none';
-        });
-        
-        // Modal functions
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        let currentZoom = 1;
-        
-        function openModalImage(imageSrc) {
-            currentZoom = 1;
-            modalImage.style.transform = `scale(${currentZoom})`;
-            modalImage.src = imageSrc;
-            modal.style.display = 'flex';
-        }
-        
-        document.getElementById('closeModal').addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        
-        document.getElementById('zoomIn').addEventListener('click', function() {
-            currentZoom += 0.2;
-            if (currentZoom > 3) currentZoom = 3;
-            modalImage.style.transform = `scale(${currentZoom})`;
-        });
-        
-        document.getElementById('zoomOut').addEventListener('click', function() {
-            currentZoom -= 0.2;
-            if (currentZoom < 0.5) currentZoom = 0.5;
-            modalImage.style.transform = `scale(${currentZoom})`;
-        });
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
             }
-        });
+        }
+
+        function showCategory(cat) {
+            document.getElementById('mainPage').classList.add('hidden');
+            document.getElementById('categoryPage').classList.remove('hidden');
+            ['arabic','Special','tart','birthday','ramadan','bakery'].forEach(c=>{
+                document.getElementById(c).classList.add('hidden');
+            });
+            document.getElementById(cat).classList.remove('hidden');
+            const titles={
+                arabic:"حلويات عربية | Arabic Desserts",
+                Special:"كيك مميز | Special Cakes",
+                tart:"جميع التارتات | Tarts Collection",
+                birthday:"كيك أعياد ميلاد | Birthday Cakes",
+                ramadan:"حلويات رمضان | Ramadan Sweets",
+                bakery:"جميع المخبوزات | Bakery Items"
+            };
+            document.getElementById('categoryTitle').textContent = titles[cat];
+        }
+
+        function showMainPage() {
+            document.getElementById('categoryPage').classList.add('hidden');
+            document.getElementById('mainPage').classList.remove('hidden');
+        }
+
+        let currentZoom=1;
+        function openModal(name,desc,img){
+            document.getElementById('imageModal').style.display='block';
+            document.getElementById('modalTitle').textContent=name;
+            document.getElementById('modalDescription').textContent=desc;
+            document.getElementById('zoom-img').src=img;
+            resetZoom();
+        }
+        function closeModal(){document.getElementById('imageModal').style.display='none';}
+        function zoomIn(){currentZoom=Math.min(currentZoom+0.2,3);applyZoom();}
+        function zoomOut(){currentZoom=Math.max(currentZoom-0.2,0.5);applyZoom();}
+        function resetZoom(){currentZoom=1;applyZoom();}
+        function applyZoom(){
+            const img=document.getElementById('zoom-img');
+            img.style.transform=`scale(${currentZoom})`;
+            img.style.transformOrigin='center';
+        }
+        window.onclick=function(e){
+            if(e.target==document.getElementById('imageModal'))closeModal();
+        };
     </script>
 </body>
 </html>
